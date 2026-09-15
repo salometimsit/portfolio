@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salome Timsit</title>
+  
+  <!-- Modern Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --bg-alt: #F8FAFC;
+      --bg-gradient: linear-gradient(135deg, #EEF2FF 0%, #F0FDFA 50%, #FAF5FF 100%);
+      
+      --text-dark: #0F172A;
+      --text: #334155;
+      --text-muted: #64748B;
+      
+      /* Vibrant Accents */
+      --primary: #4F46E5;        /* Electric Indigo */
+      --secondary: #06B6D4;      /* Vivid Cyan */
+      --accent: #8B5CF6;         /* Bright Purple */
+      --pink: #EC4899;           /* Pop Pink */
+      --gradient-accent: linear-gradient(135deg, #4F46E5, #06B6D4);
+      --gradient-warm: linear-gradient(135deg, #8B5CF6, #EC4899);
+      
+      --border: #E2E8F0;
+      --border-glow: rgba(79, 70, 229, 0.2);
+      
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-md: 0 12px 28px -6px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 22px 45px -10px rgba(79, 70, 229, 0.12);
+      
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.65;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+      position: relative;
+    }
+    .logo {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.35rem;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+
+    /* Mobile Hamburger Menu Toggle */
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-dark);
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 9.5rem 0 6rem;
+      background: var(--bg-gradient);
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.45rem 1.1rem;
+      background: white;
+      border: 1px solid #C7D2FE;
+      box-shadow: var(--shadow-sm);
+      border-radius: 9999px;
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 1.75rem;
+    }
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      background: #10B981;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #10B981;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.9); }
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 3.75rem;
+      font-weight: 900;
+      color: var(--text-dark);
+      line-height: 1.1;
+      letter-spacing: -1.8px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-lead {
+      font-size: 1.25rem;
+      color: var(--text);
+      max-width: 820px;
+      margin-bottom: 2rem;
+    }
+    .lang-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+    .lang-chip {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      box-shadow: var(--shadow-sm);
+    }
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 1.9rem;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-primary {
+      background: var(--gradient-accent);
+      color: white;
+      box-shadow: 0 4px 18px rgba(79, 70, 229, 0.35);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 6px 24px rgba(79, 70, 229, 0.45);
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: white;
+      color: var(--text-dark);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* Section Global */
+    section { padding: 6rem 0; }
+    .section-header { margin-bottom: 3rem; }
+    .section-tag {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.4rem;
+      display: inline-block;
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2.35rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -1px;
+    }
+
+    /* About Section */
+    .about-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3.5rem;
+      box-shadow: var(--shadow-md);
+      display: grid;
+      grid-template-columns: 1.15fr 1.85fr;
+      gap: 3.5rem;
+      align-items: center;
+      position: relative;
+    }
+    .profile-frame {
+      position: relative;
+      margin: 0 auto;
+      max-width: 330px;
+      width: 100%;
+    }
+    .profile-glow {
+      position: absolute;
+      inset: -10px;
+      background: var(--gradient-accent);
+      border-radius: 28px;
+      filter: blur(14px);
+      opacity: 0.45;
+      z-index: 0;
+    }
+    .profile-img {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 24px;
+      border: 5px solid white;
+      box-shadow: var(--shadow-md);
+      z-index: 1;
+      display: block;
+    }
+    .about-text p {
+      font-size: 1.05rem;
+      margin-bottom: 1.15rem;
+      color: var(--text);
+    }
+    .about-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+    .highlight-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .highlight-card h4 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.25rem;
+    }
+    .highlight-card p {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    /* 3D Wireframe Tech Sphere Container */
+    .sphere-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 3.5rem;
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    #sphere-canvas {
+      cursor: grab;
+      max-width: 100%;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+    }
+    #sphere-canvas:active {
+      cursor: grabbing;
+    }
+
+    /* Skills Grid */
+    .skills-section {
+      background: #FAFAFD;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 6rem 0;
+    }
+    .skills-grid-roy {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.75rem;
+    }
+    .roy-skill-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+    .roy-skill-card:hover {
+      border-color: #C7D2FE;
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+    .roy-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .roy-card-header i {
+      font-size: 1.35rem;
+      color: var(--primary);
+    }
+    .roy-card-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin: 0;
+    }
+    .skill-subgroup-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      margin: 1rem 0 0.6rem;
+    }
+    .skill-subgroup-title:first-child {
+      margin-top: 0;
+    }
+    .roy-icon-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.85rem;
+    }
+    .roy-skill-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      min-height: 48px;
+      box-sizing: border-box;
+      transition: all 0.15s ease-in-out;
+    }
+    .roy-skill-badge span {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+    .roy-skill-badge:hover {
+      background: white;
+      border-color: #CBD5E1;
+      transform: translateY(-1px);
+    }
+    .roy-skill-badge i {
+      font-size: 1.35rem;
+      width: 24px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    /* Projects Detailed Showcase */
+    .project-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 4.5rem;
+    }
+    .project-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .project-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+      border-color: #C7D2FE;
+    }
+    .project-header-bar {
+      background: #FAFAFD;
+      border-bottom: 1px solid var(--border);
+      padding: 1.35rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .project-org {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .tag-highlight {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.35rem 0.95rem;
+      border-radius: 8px;
+    }
+    .tag-blue { background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
+    .tag-purple { background: #FAF5FF; color: #6D28D9; border: 1px solid #E9D5FF; }
+    .tag-teal { background: #F0FDFA; color: #0F766E; border: 1px solid #99F6E4; }
+
+    .project-body {
+      padding: 2.75rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    .project-body h3 {
+      font-family: var(--font-heading);
+      font-size: 1.85rem;
+      color: var(--text-dark);
+      margin-bottom: 1.15rem;
+      line-height: 1.25;
+    }
+    .metrics-box {
+      background: linear-gradient(135deg, #F8FAFC, #EEF2FF);
+      border: 1px solid #E0E7FF;
+      border-radius: 14px;
+      padding: 1.25rem 1.35rem;
+      margin: 1.5rem 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+    .metric-value {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--primary);
+    }
+    .metric-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .tech-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 1.5rem;
+    }
+    .pill {
+      background: white;
+      border: 1px solid #C7D2FE;
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .project-media-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      justify-content: center;
+      width: 100%;
+    }
+    .media-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #F8FAFC;
+      box-shadow: var(--shadow-sm);
+    }
+    .media-card img {
+      width: 100%;
+      height: auto;
+      max-height: 380px;
+      display: block;
+      object-fit: contain;
+      background: #F1F5F9;
+    }
+    .media-caption {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding: 0.75rem 1.1rem;
+      background: white;
+      border-top: 1px solid var(--border);
+      font-weight: 500;
+    }
+
+    /* Mobile Phone Carousel */
+    .carousel-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 375px;
+      margin: 0 auto;
+    }
+    .carousel-track-wrapper {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+    }
+    .carousel-slide {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    .carousel-slide.active {
+      display: flex;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .phone-mockup {
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0F172A;
+    }
+    .phone-mockup img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 1.15rem;
+      padding: 0 0.5rem;
+    }
+    .carousel-btn {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--primary);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+    .carousel-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      transform: scale(1.05);
+    }
+    .carousel-dots {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .dot {
+      width: 9px;
+      height: 9px;
+      background: #CBD5E1;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .dot.active {
+      background: var(--primary);
+      width: 22px;
+      border-radius: 9999px;
+    }
+
+    /* Wide Landscape Carousel */
+    .wide-carousel-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .wide-carousel-wrapper {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+    }
+    .traffic-slide {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+    }
+    .traffic-slide.active {
+      display: flex;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+    .wide-media-frame {
+      width: 100%;
+      height: 400px;
+      background: #F8FAFC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 1rem;
+    }
+    .wide-media-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Education Section Styles */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 2rem;
+    }
+    .edu-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .edu-card:hover {
+      border-color: #C7D2FE;
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+    .edu-logo-badge {
+      width: 68px;
+      height: 68px;
+      border-radius: 16px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      padding: 0.4rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .edu-logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .edu-content {
+      flex: 1;
+    }
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .edu-title {
+      font-family: var(--font-heading);
+      font-size: 1.28rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin: 0;
+      line-height: 1.25;
+    }
+    .edu-institution {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 0.2rem;
+    }
+    .edu-dates {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--bg-alt);
+      padding: 0.35rem 0.8rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .edu-desc {
+      font-size: 0.92rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      padding: 5.5rem 0 3.5rem;
+      text-align: center;
+      background: #FAFAFD;
+      border-top: 1px solid var(--border);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .footer-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--primary); }
+
+    /* =========================================================================
+       MOBILE & RESPONSIVE BREAKPOINTS (Phones & Tablets)
+       ========================================================================= */
+    @media (max-width: 960px) {
+      .hero h1 { font-size: 2.85rem; letter-spacing: -1.2px; }
+      .about-card, .project-body { 
+        grid-template-columns: 1fr; 
+        gap: 2.5rem; 
+        padding: 2.25rem 1.5rem; 
+      }
+      .project-header-bar { padding: 1.25rem 1.5rem; }
+      .about-highlights { grid-template-columns: 1fr; }
+      .skills-grid-roy { grid-template-columns: 1fr; }
+      .education-grid { grid-template-columns: 1fr; }
+      .wide-media-frame { height: 300px; padding: 0.5rem; }
+      .phone-mockup { height: 440px; }
+
+      /* Mobile Navigation Drawer */
+      .mobile-menu-btn { display: block; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-md);
+        padding: 1.5rem 2rem;
+        gap: 1.25rem;
+      }
+      .nav-links.active { display: flex; }
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 7.5rem 0 4rem; }
+      .hero h1 { font-size: 2.25rem; line-height: 1.15; }
+      .hero-lead { font-size: 1.05rem; }
+      .section-title { font-size: 1.95rem; }
+      .cta-group { flex-direction: column; width: 100%; }
+      .btn { width: 100%; justify-content: center; }
+      .metrics-box { grid-template-columns: 1fr; gap: 0.75rem; }
+      .roy-icon-grid { grid-template-columns: 1fr; }
+      .wide-media-frame { height: 230px; }
+      .phone-mockup { height: 380px; }
+      .carousel-container { max-width: 100%; }
+      .profile-img { height: 320px; }
+      .edu-card { flex-direction: column; gap: 1.2rem; }
+      .edu-logo-badge { width: 56px; height: 56px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navbar with Mobile Toggle -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#hero" class="logo">Salome<span>.</span></a>
+      <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="#about" class="nav-link-item">About</a></li>
+        <li><a href="#skills" class="nav-link-item">Skills</a></li>
+        <li><a href="#projects" class="nav-link-item">Work</a></li>
+        <li><a href="#education" class="nav-link-item">Education</a></li>
+        <li><a href="#contact" class="nav-link-item">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <div class="status-badge">
+        <span class="status-dot"></span> Available for New Opportunities
+      </div>
+      <h1>Salome Timsit</h1>
+      <p class="hero-lead">
+        I develop end-to-end software applications across <strong>TypeScript, React Native, Python, C++, and Java</strong>—combining responsive user interfaces, structured backend architecture, and integrated machine learning systems.
+      </p>
+
+      <div class="lang-row">
+        <span style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">
+          <i class="fa-solid fa-earth-americas"></i> Languages:
+        </span>
+        <span class="lang-chip">English (Native)</span>
+        <span class="lang-chip">French (Native)</span>
+        <span class="lang-chip">Hebrew (Native)</span>
+      </div>
+
+      <div class="cta-group">
+        <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-code-branch"></i> View Selected Projects</a>
+        <a href="mailto:your-email@example.com" class="btn btn-secondary"><i class="fa-solid fa-envelope"></i> Contact Me</a>
+        <a href="https://linkedin.com" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Profile</span>
+        <h2 class="section-title">About Me</h2>
+      </div>
+
+      <div class="about-card">
+        <div class="profile-frame">
+          <div class="profile-glow"></div>
+          <img src="images/profile.jpg" alt="Salome Timsit" class="profile-img" />
+        </div>
+
+        <div>
+          <div class="about-text">
+            <p>
+              I build reliable software systems bridging clean computer science fundamentals with modern engineering—from full-stack mobile applications and scalable backend logic to high-throughput network classification[cite: 2] and 3D computer vision pipelines[cite: 1].
+            </p>
+            <p>
+              As a former IDF Bootcamp Commander, I bring operational ownership, clear communication under pressure, and structured problem-solving to every engineering lifecycle. Fluent natively in English, French, and Hebrew, I focus on building dependable architectures that deliver tangible impact.
+            </p>
+          </div>
+
+          <div class="about-highlights">
+            <div class="highlight-card">
+              <h4>B.Sc. CS</h4>
+              <p>Ariel University</p>
+            </div>
+            <div class="highlight-card">
+              <h4>Leadership</h4>
+              <p>IDF Bootcamp Commander</p>
+            </div>
+            <div class="highlight-card">
+              <h4>Engineering</h4>
+              <p>Full-Stack & Systems</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Skills Section with 3D Logo & Wireframe Globe -->
+  <section id="skills" class="skills-section">
+    <div class="container">
+      <div class="section-header" style="text-align: center;">
+        <span class="section-tag">Interactive Stack</span>
+        <h2 class="section-title">Technical Skills</h2>
+      </div>
+
+      <!-- 3D Interactive Wireframe Tech Globe -->
+      <div class="sphere-container">
+        <canvas id="sphere-canvas" width="550" height="480"></canvas>
+      </div>
+
+      <!-- Skills Matrix Breakdown -->
+      <div class="skills-grid-roy">
+
+        <!-- Card 1: Core Languages -->
+        <div class="roy-skill-card">
+          <div class="roy-card-header">
+            <i class="fa-solid fa-code"></i>
+            <h3>Languages</h3>
+          </div>
+          <div class="roy-icon-grid">
+            <div class="roy-skill-badge">
+              <i class="devicon-python-plain colored"></i>
+              <span>Python</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-typescript-plain colored"></i>
+              <span>TypeScript</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-javascript-plain colored"></i>
+              <span>JavaScript</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-java-plain colored"></i>
+              <span>Java</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-cplusplus-plain colored"></i>
+              <span>C++</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-csharp-plain colored"></i>
+              <span>C#</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-c-plain colored"></i>
+              <span>C</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-azuresqldatabase-plain colored"></i>
+              <span>SQL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Frontend & Mobile -->
+        <div class="roy-skill-card">
+          <div class="roy-card-header">
+            <i class="fa-solid fa-laptop-code"></i>
+            <h3>Frontend & Mobile</h3>
+          </div>
+          
+          <div class="skill-subgroup-title">Frameworks & Mobile</div>
+          <div class="roy-icon-grid">
+            <div class="roy-skill-badge">
+              <i class="devicon-react-original colored"></i>
+              <span>React Native</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="fa-solid fa-mobile-screen text-indigo-600"></i>
+              <span>Expo</span>
+            </div>
+          </div>
+
+          <div class="skill-subgroup-title">Web Standards</div>
+          <div class="roy-icon-grid">
+            <div class="roy-skill-badge">
+              <i class="devicon-html5-plain colored"></i>
+              <span>HTML5</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-css3-plain colored"></i>
+              <span>CSS3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: AI & Machine Learning -->
+        <div class="roy-skill-card">
+          <div class="roy-card-header">
+            <i class="fa-solid fa-brain"></i>
+            <h3>Data Science & AI</h3>
+          </div>
+          <div class="roy-icon-grid">
+            <div class="roy-skill-badge">
+              <i class="devicon-pytorch-original colored"></i>
+              <span>PyTorch</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-tensorflow-line colored"></i>
+              <span>TensorFlow</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-scikitlearn-plain colored"></i>
+              <span>Scikit-Learn</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="fa-solid fa-bolt text-amber-500"></i>
+              <span>XGBoost</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-pandas-plain colored"></i>
+              <span>Pandas</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-numpy-plain colored"></i>
+              <span>NumPy</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="fa-solid fa-eye text-cyan-600"></i>
+              <span>3D Vision</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="fa-solid fa-chart-line text-emerald-600"></i>
+              <span>Grad-CAM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Backend & Systems -->
+        <div class="roy-skill-card">
+          <div class="roy-card-header">
+            <i class="fa-solid fa-server"></i>
+            <h3>Backend & Cloud</h3>
+          </div>
+          <div class="roy-icon-grid">
+            <div class="roy-skill-badge">
+              <i class="devicon-firebase-plain colored"></i>
+              <span>Firebase</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="fa-solid fa-cloud text-sky-500"></i>
+              <span>REST APIs</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="fa-solid fa-cubes text-purple-600"></i>
+              <span>OOP Patterns</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="fa-solid fa-network-wired text-blue-500"></i>
+              <span>TCP/IP Protocols</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Tools & DevOps -->
+        <div class="roy-skill-card">
+          <div class="roy-card-header">
+            <i class="fa-solid fa-toolbox"></i>
+            <h3>Tools & DevOps</h3>
+          </div>
+          <div class="roy-icon-grid">
+            <div class="roy-skill-badge">
+              <i class="devicon-git-plain colored"></i>
+              <span>Git</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-github-original text-slate-800"></i>
+              <span>GitHub</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-linux-plain colored"></i>
+              <span>Linux</span>
+            </div>
+            <div class="roy-skill-badge">
+              <i class="devicon-vscode-plain colored"></i>
+              <span>VS Code</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Engineering Showcase</span>
+        <h2 class="section-title">Selected Projects</h2>
+      </div>
+
+      <div class="project-showcase">
+
+        <!-- Project 1: Hadassah Hospital AI -->
+        <div class="project-card">
+          <div class="project-header-bar">
+            <span class="project-org"><i class="fa-solid fa-hospital-user text-cyan-600"></i> Clinical AI • Hadassah Hospital Collaboration[cite: 1]</span>
+            <span class="tag-highlight tag-purple"><i class="fa-solid fa-award"></i> Outstanding Distinction</span>
+          </div>
+
+          <div class="project-body">
+            <div>
+              <h3>Early HCC Detection via 3D Deep Learning & Vision Transformers</h3>
+              <p>
+                Engineered an automated 3D medical vision pipeline predicting future liver cancer risk directly from pre-diagnosis CT volumes[cite: 1]. Integrates deep representations with handcrafted clinical radiomic features[cite: 1].
+              </p>
+              
+              <ul style="padding-left: 1.25rem; font-size: 0.95rem; margin-bottom: 1.25rem;">
+                <li><strong>Pipeline:</strong> DICOM phase filtering, Hounsfield windowing [-30, 200], liver-only Z-score normalization, and TotalSegmentator liver masking[cite: 1].</li>
+                <li><strong>Dual-Track Framework:</strong> Track A (89 PyRadiomics features stabilized to 9 markers via VaRFS bootstrap) combined with Track B (3D Swin Transformer encoder)[cite: 1].</li>
+                <li><strong>Interpretability:</strong> Built voxel-level spatial verification using 3D Grad-CAM and self-attention heatmaps localized directly inside the liver parenchyma[cite: 1].</li>
+              </ul>
+
+              <div class="metrics-box">
+                <div>
+                  <div class="metric-value">0.975</div>
+                  <div class="metric-label">Radiomics AUC (CV)[cite: 1]</div>
+                </div>
+                <div>
+                  <div class="metric-value">1.00</div>
+                  <div class="metric-label">Held-Out F1[cite: 1]</div>
+                </div>
+                <div>
+                  <div class="metric-value">3D SwinViT</div>
+                  <div class="metric-label">Vision Transformer[cite: 1]</div>
+                </div>
+              </div>
+
+              <div class="tech-pill-list">
+                <span class="pill">PyTorch</span>
+                <span class="pill">MONAI</span>
+                <span class="pill">3D SwinViT</span>
+                <span class="pill">PyRadiomics</span>
+                <span class="pill">Grad-CAM</span>
+              </div>
+            </div>
+
+            <div class="project-media-col">
+              <div class="media-card">
+                <img src="images/hadassah_pipeline.jpg" alt="Clinical Preprocessing and Dual Track Architecture" />
+                <div class="media-caption">Figure 1: Dual-track PyRadiomics + 3D SwinViT cross-attention pipeline[cite: 1].</div>
+              </div>
+              <div class="media-card">
+                <img src="images/hadassah_gradcam.png" alt="Pre-Diagnosis CT to Grad-CAM heatmap" />
+                <div class="media-caption">Figure 2: Automatic liver segmentation and Grad-CAM spatial heatmap[cite: 1].</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Mobile App (Interactive Vertical Phone Carousel) -->
+        <div class="project-card">
+          <div class="project-header-bar">
+            <span class="project-org"><i class="fa-solid fa-mobile-screen text-indigo-600"></i> Full-Stack Mobile Development</span>
+            <span class="tag-highlight tag-blue"><i class="fa-solid fa-check"></i> Production Shipped</span>
+          </div>
+
+          <div class="project-body">
+            <div>
+              <h3>Cross-Platform Fitness Tracking Ecosystem</h3>
+              <p>
+                Engineered and shipped a mobile fitness platform deployed across iOS and Android. Designed to provide dynamic personalized training routines, daily health metric monitoring, and responsive video streaming workflows.
+              </p>
+              
+              <ul style="padding-left: 1.25rem; font-size: 0.95rem; margin-bottom: 1.25rem;">
+                <li><strong>Mobile Architecture:</strong> Built responsive UI components with <strong>React Native, Expo, and TypeScript</strong> for type safety and code reusability.</li>
+                <li><strong>Cloud Backend:</strong> Configured <strong>Firebase</strong> for client authentication, secure session storage, and synchronized real-time data handling.</li>
+                <li><strong>Media & State:</strong> Integrated low-latency video streaming pipelines with caching alongside modules for progressive overload metrics and workout scheduling.</li>
+              </ul>
+
+              <div class="metrics-box">
+                <div>
+                  <div class="metric-value">iOS / Android</div>
+                  <div class="metric-label">Cross-Platform</div>
+                </div>
+                <div>
+                  <div class="metric-value">TypeScript</div>
+                  <div class="metric-label">Type-Safe UI</div>
+                </div>
+                <div>
+                  <div class="metric-value">Firebase</div>
+                  <div class="metric-label">Cloud Backend</div>
+                </div>
+              </div>
+
+              <div class="tech-pill-list">
+                <span class="pill">React Native</span>
+                <span class="pill">Expo</span>
+                <span class="pill">TypeScript</span>
+                <span class="pill">Firebase</span>
+                <span class="pill">REST API</span>
+              </div>
+            </div>
+
+            <div class="project-media-col">
+              <div class="carousel-container">
+                <div class="carousel-track-wrapper">
+                  <div class="carousel-track" id="fitness-carousel">
+                    
+                    <div class="carousel-slide active">
+                      <div class="phone-mockup">
+                        <img src="images/main.jpg" alt="Personalized Main Dashboard" />
+                      </div>
+                      <div class="media-caption">Figure 1: Main client dashboard & personalized overview.</div>
+                    </div>
+
+                    <div class="carousel-slide">
+                      <div class="phone-mockup">
+                        <img src="images/exercises.jpg" alt="Workout Tracking Interface" />
+                      </div>
+                      <div class="media-caption">Figure 2: Active workout tracking flows & video demonstration.</div>
+                    </div>
+
+                    <div class="carousel-slide">
+                      <div class="phone-mockup">
+                        <img src="images/nutrition.jpg" alt="Personalized Nutrition Menu" />
+                      </div>
+                      <div class="media-caption">Figure 3: Structured nutrition menu & daily macro tracking.</div>
+                    </div>
+
+                    <div class="carousel-slide">
+                      <div class="phone-mockup">
+                        <img src="images/advance.jpg" alt="Personalized tracking and improvement" />
+                      </div>
+                      <div class="media-caption">Figure 4: Personalized tracking and improvement.</div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="carousel-controls">
+                  <button class="carousel-btn prev-btn" onclick="movePhoneSlide(-1)" aria-label="Previous Slide">
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </button>
+
+                  <div class="carousel-dots" id="phone-dots">
+                    <span class="dot active" onclick="currentPhoneSlide(0)"></span>
+                    <span class="dot" onclick="currentPhoneSlide(1)"></span>
+                    <span class="dot" onclick="currentPhoneSlide(2)"></span>
+                    <span class="dot" onclick="currentPhoneSlide(3)"></span>
+                  </div>
+
+                  <button class="carousel-btn next-btn" onclick="movePhoneSlide(1)" aria-label="Next Slide">
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+			
+        <!-- Project 3: Traffic Classification (Wide Landscape Carousel) -->
+        <div class="project-card">
+          <div class="project-header-bar">
+            <span class="project-org"><i class="fa-solid fa-network-wired text-blue-600"></i> Cyber & Network Systems Research[cite: 2]</span>
+            <span class="tag-highlight tag-teal"><i class="fa-solid fa-bolt"></i> 99.62% Accuracy[cite: 2]</span>
+          </div>
+
+          <div class="project-body">
+            <div>
+              <h3>High-Throughput Encrypted Traffic Classifier</h3>
+              <p>
+                Built a high-performance network categorization engine identifying encrypted application streams (Zoom, YouTube, Google Meet, Spotify, Browsing) without packet payload decryption[cite: 2].
+              </p>
+
+              <ul style="padding-left: 1.25rem; font-size: 0.95rem; margin-bottom: 1.25rem;">
+                <li><strong>Scale & Flow Extraction:</strong> Evaluated 145,670 packet flows across 86 packet length, inter-arrival time (IPT), and protocol distribution features[cite: 2].</li>
+                <li><strong>Dimensionality Reduction:</strong> Applied PCA and tree-based feature selection to compress 86 features down to 36 optimal markers while preserving variance[cite: 2].</li>
+                <li><strong>Model Benchmarking:</strong> Evaluated 7 architectures (XGBoost, Random Forest, Neural Networks, Ensembles, KNN, SVM, Logistic Regression)[cite: 2].</li>
+              </ul>
+
+              <div class="metrics-box">
+                <div>
+                  <div class="metric-value">99.62%</div>
+                  <div class="metric-label">XGBoost Accuracy[cite: 2]</div>
+                </div>
+                <div>
+                  <div class="metric-value">145K+</div>
+                  <div class="metric-label">Flows Evaluated[cite: 2]</div>
+                </div>
+                <div>
+                  <div class="metric-value">36</div>
+                  <div class="metric-label">Optimal Features[cite: 2]</div>
+                </div>
+              </div>
+
+              <div class="tech-pill-list">
+                <span class="pill">Python</span>
+                <span class="pill">XGBoost</span>
+                <span class="pill">TensorFlow</span>
+                <span class="pill">Scikit-Learn</span>
+                <span class="pill">PCA</span>
+              </div>
+            </div>
+
+            <div class="project-media-col">
+              <div class="wide-carousel-container">
+                <div class="wide-carousel-wrapper">
+                  
+                  <div class="traffic-slide active">
+                    <div class="wide-media-frame">
+                      <img src="images/benchmark.png" alt="Performance Metrics of Different ML Models" />
+                    </div>
+                    <div class="media-caption">Figure 4: Benchmark across 7 models (XGBoost vs. RF, Neural Networks, SVM)[cite: 2].</div>
+                  </div>
+
+                  <div class="traffic-slide">
+                    <div class="wide-media-frame">
+                      <img src="images/cumulative.png" alt="Cumulative Number of Packets Over Time" />
+                    </div>
+                    <div class="media-caption">Figure 5: Cumulative arrival signatures across streaming and conferencing services[cite: 2].</div>
+                  </div>
+
+                </div>
+
+                <div class="carousel-controls">
+                  <button class="carousel-btn prev-btn" onclick="moveTrafficSlide(-1)" aria-label="Previous Slide">
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </button>
+
+                  <div class="carousel-dots" id="traffic-dots">
+                    <span class="dot active" onclick="currentTrafficSlide(0)"></span>
+                    <span class="dot" onclick="currentTrafficSlide(1)"></span>
+                  </div>
+
+                  <button class="carousel-btn next-btn" onclick="moveTrafficSlide(1)" aria-label="Next Slide">
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Academic Background</span>
+        <h2 class="section-title">Education</h2>
+      </div>
+
+      <div class="education-grid">
+
+        <!-- University Degree Card -->
+        <div class="edu-card">
+          <div class="edu-logo-badge">
+            <img src="images/uni.png" alt="Ariel University Logo" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/3135/3135755.png';" />
+          </div>
+          <div class="edu-content">
+            <div class="edu-header">
+              <div>
+                <h3 class="edu-title">B.Sc. in Computer Science</h3>
+                <p class="edu-institution">Ariel University</p>
+              </div>
+              <span class="edu-dates">2023 – 2026</span>
+            </div>
+            <p class="edu-desc">
+              Specialization in <strong>Data Science & Artificial Intelligence</strong>. Focused on deep learning architectures, computer vision pipelines, and scalable software systems.
+            </p>
+            <div class="tech-pill-list" style="margin-top: 0.5rem;">
+              <span class="pill">Data Science & AI</span>
+              <span class="pill">Deep Learning</span>
+              <span class="pill">Algorithms & Data Structures</span>
+              <span class="pill">Computer Networks</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- High School Card -->
+        <div class="edu-card">
+          <div class="edu-logo-badge">
+            <img src="images/school.jpg" alt="Handesaim High School Logo" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/2997/2997295.png';" />
+          </div>
+          <div class="edu-content">
+            <div class="edu-header">
+              <div>
+                <h3 class="edu-title">Computer Science & Cyber Track</h3>
+                <p class="edu-institution">Handesaim High School</p>
+              </div>
+              <span class="edu-dates">2017 – 2020</span>
+            </div>
+            <p class="edu-desc">
+              Rigorous high school technical track focusing on computer science, cybersecurity principles, mathematics, and physics.
+            </p>
+            <div class="tech-pill-list" style="margin-top: 0.5rem;">
+              <span class="pill">10 pts Computer & Cyber</span>
+              <span class="pill">5 pts Mathematics</span>
+              <span class="pill">5 pts Physics</span>
+              <span class="pill">5 pts English & French</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Footer -->
+  <footer id="contact">
+    <div class="container">
+      <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--text-dark); margin-bottom: 1rem;">Let's Connect</h2>
+      <p style="color: var(--text-muted); max-width: 550px; margin: 0 auto 2.5rem;">
+        Available for software engineering and application development opportunities.
+      </p>
+
+      <div class="footer-links">
+        <a href="mailto:your-email@example.com"><i class="fa-solid fa-envelope"></i> Email</a>
+        <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+      </div>
+
+      <p style="font-size: 0.85rem; color: var(--text-muted);">© 2026 Salome Timsit.</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Hamburger Navigation Menu Script -->
+  <script>
+    const mobileBtn = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link-item');
+
+    mobileBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+  </script>
+
+  <!-- 3D Interactive Logo & Wireframe Globe Script with Touch & Mobile Resize -->
+  <script>
+    (function () {
+      const canvas = document.getElementById('sphere-canvas');
+      const ctx = canvas.getContext('2d');
+
+      const items = [
+        { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+        { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+        { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+        { name: "PyTorch", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
+        { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+        { name: "C++", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
+        { name: "TensorFlow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" },
+        { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+        { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+        { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
+        { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+        { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+        { name: "NumPy", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
+        { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+        { name: "Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+        { name: "C", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" },
+        { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+        { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" }
+      ];
+
+      let RADIUS = 165;
+      const count = items.length;
+      let elements = [];
+      let rings = [];
+
+      function handleResize() {
+        const width = Math.min(550, window.innerWidth - 30);
+        const height = width < 480 ? width * 0.95 : 480;
+        canvas.width = width;
+        canvas.height = height;
+        RADIUS = width * 0.32;
+        initSphereGeometry();
+      }
+
+      function initSphereGeometry() {
+        elements = [];
+        items.forEach((item, i) => {
+          const phi = Math.acos(-1 + (2 * i) / count);
+          const theta = Math.sqrt(count * Math.PI) * phi;
+
+          const img = new Image();
+          img.crossOrigin = "anonymous";
+          img.src = item.icon;
+
+          elements.push({
+            name: item.name,
+            img: img,
+            x: RADIUS * Math.cos(theta) * Math.sin(phi),
+            y: RADIUS * Math.sin(theta) * Math.sin(phi),
+            z: RADIUS * Math.cos(phi)
+          });
+        });
+
+        rings = [];
+        const numLatitudes = 5;
+        const pointsPerRing = 40;
+
+        for (let lat = 1; lat <= numLatitudes; lat++) {
+          const phi = (Math.PI / (numLatitudes + 1)) * lat;
+          const r = RADIUS * Math.sin(phi);
+          const y = RADIUS * Math.cos(phi);
+          const ring = [];
+          for (let j = 0; j < pointsPerRing; j++) {
+            const theta = (Math.PI * 2 / pointsPerRing) * j;
+            ring.push({
+              x: r * Math.cos(theta),
+              y: y,
+              z: r * Math.sin(theta)
+            });
+          }
+          rings.push(ring);
+        }
+
+        const numLongitudes = 4;
+        for (let lon = 0; lon < numLongitudes; lon++) {
+          const theta = (Math.PI / numLongitudes) * lon;
+          const ring = [];
+          for (let j = 0; j < pointsPerRing; j++) {
+            const phi = (Math.PI * 2 / pointsPerRing) * j;
+            ring.push({
+              x: RADIUS * Math.sin(phi) * Math.cos(theta),
+              y: RADIUS * Math.cos(phi),
+              z: RADIUS * Math.sin(phi) * Math.sin(theta)
+            });
+          }
+          rings.push(ring);
+        }
+      }
+
+      window.addEventListener('resize', handleResize);
+      handleResize();
+
+      let mouseX = 0.002;
+      let mouseY = 0.002;
+      let isDragging = false;
+      let lastX = 0;
+      let lastY = 0;
+
+      // Mouse Listeners
+      canvas.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+          const dx = e.clientX - lastX;
+          const dy = e.clientY - lastY;
+          mouseX = dx * 0.0004;
+          mouseY = dy * 0.0004;
+          lastX = e.clientX;
+          lastY = e.clientY;
+        } else {
+          const rect = canvas.getBoundingClientRect();
+          if (
+            e.clientX >= rect.left &&
+            e.clientX <= rect.right &&
+            e.clientY >= rect.top &&
+            e.clientY <= rect.bottom
+          ) {
+            const x = e.clientX - rect.left - canvas.width / 2;
+            const y = e.clientY - rect.top - canvas.height / 2;
+            mouseX = x * 0.00008;
+            mouseY = y * 0.00008;
+          }
+        }
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      // Touch Listeners for Mobile drag & rotation
+      canvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isDragging = true;
+          lastX = e.touches[0].clientX;
+          lastY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      canvas.addEventListener('touchmove', (e) => {
+        if (isDragging && e.touches.length === 1) {
+          const dx = e.touches[0].clientX - lastX;
+          const dy = e.touches[0].clientY - lastY;
+          mouseX = dx * 0.0005;
+          mouseY = dy * 0.0005;
+          lastX = e.touches[0].clientX;
+          lastY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      canvas.addEventListener('touchend', () => {
+        isDragging = false;
+        mouseX = 0.002;
+        mouseY = 0.002;
+      });
+
+      function rotateX(point, angle) {
+        const cos = Math.cos(angle);
+        const sin = Math.sin(angle);
+        const y = point.y * cos - point.z * sin;
+        const z = point.y * sin + point.z * cos;
+        point.y = y;
+        point.z = z;
+      }
+
+      function rotateY(point, angle) {
+        const cos = Math.cos(angle);
+        const sin = Math.sin(angle);
+        const x = point.x * cos + point.z * sin;
+        const z = -point.x * sin + point.z * cos;
+        point.x = x;
+        point.z = z;
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const fov = 380;
+
+        ctx.lineWidth = 1;
+        rings.forEach(ring => {
+          ring.forEach(pt => {
+            rotateY(pt, mouseX);
+            rotateX(pt, -mouseY);
+          });
+
+          for (let i = 0; i < ring.length; i++) {
+            const p1 = ring[i];
+            const p2 = ring[(i + 1) % ring.length];
+
+            const avgZ = (p1.z + p2.z) / 2;
+            const alpha = Math.max(0.04, (avgZ + RADIUS) / (2 * RADIUS) * 0.22);
+            ctx.strokeStyle = `rgba(129, 140, 248, ${alpha})`;
+
+            const scale1 = fov / (fov + p1.z);
+            const x1 = cx + p1.x * scale1;
+            const y1 = cy + p1.y * scale1;
+
+            const scale2 = fov / (fov + p2.z);
+            const x2 = cx + p2.x * scale2;
+            const y2 = cy + p2.y * scale2;
+
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+          }
+        });
+
+        elements.forEach(el => {
+          rotateY(el, mouseX);
+          rotateX(el, -mouseY);
+        });
+
+        const sorted = [...elements].sort((a, b) => a.z - b.z);
+
+        sorted.forEach(el => {
+          const scale = fov / (fov + el.z);
+          const x2d = cx + el.x * scale;
+          const y2d = cy + el.y * scale;
+
+          const alpha = Math.max(0.22, (el.z + RADIUS) / (2 * RADIUS));
+          const iconSize = Math.max(18, Math.floor(34 * scale));
+
+          ctx.save();
+          ctx.globalAlpha = alpha;
+
+          if (el.img.complete && el.img.naturalWidth !== 0) {
+            ctx.drawImage(el.img, x2d - iconSize / 2, y2d - iconSize / 2, iconSize, iconSize);
+          }
+
+          ctx.font = `700 ${Math.max(9.5, Math.floor(11 * scale))}px 'Plus Jakarta Sans', sans-serif`;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "top";
+
+          if (el.z > 0) {
+            ctx.fillStyle = `rgba(30, 41, 59, ${alpha})`;
+          } else {
+            ctx.fillStyle = `rgba(148, 163, 184, ${alpha * 0.8})`;
+          }
+
+          ctx.fillText(el.name, x2d, y2d + iconSize / 2 + 3);
+          ctx.restore();
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    })();
+  </script>
+
+  <!-- Dual Independent Carousel Scripts -->
+  <script>
+    // 1. Mobile Phone Carousel Logic (4 slides)
+    let activePhoneIndex = 0;
+    const phoneSlides = document.querySelectorAll('.carousel-slide');
+    const phoneDots = document.querySelectorAll('#phone-dots .dot');
+
+    function showPhoneSlide(index) {
+      if (index >= phoneSlides.length) activePhoneIndex = 0;
+      else if (index < 0) activePhoneIndex = phoneSlides.length - 1;
+      else activePhoneIndex = index;
+
+      phoneSlides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === activePhoneIndex);
+      });
+
+      phoneDots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === activePhoneIndex);
+      });
+    }
+
+    function movePhoneSlide(dir) {
+      showPhoneSlide(activePhoneIndex + dir);
+    }
+
+    function currentPhoneSlide(idx) {
+      showPhoneSlide(idx);
+    }
+
+    // 2. Wide Traffic Classifier Carousel Logic (2 landscape slides)
+    let activeTrafficIndex = 0;
+    const trafficSlides = document.querySelectorAll('.traffic-slide');
+    const trafficDots = document.querySelectorAll('#traffic-dots .dot');
+
+    function showTrafficSlide(index) {
+      if (index >= trafficSlides.length) activeTrafficIndex = 0;
+      else if (index < 0) activeTrafficIndex = trafficSlides.length - 1;
+      else activeTrafficIndex = index;
+
+      trafficSlides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === activeTrafficIndex);
+      });
+
+      trafficDots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === activeTrafficIndex);
+      });
+    }
+
+    function moveTrafficSlide(dir) {
+      showTrafficSlide(activeTrafficIndex + dir);
+    }
+
+    function currentTrafficSlide(idx) {
+      showTrafficSlide(idx);
+    }
+  </script>
+</body>
+</html>
